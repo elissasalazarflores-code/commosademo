@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cine Commosa · Beneficios</title>
+<meta name="description" content="Demo: beneficio corporativo de cine para colaboradores Commosa, en alianza con TaquillApp para Empresas.">
+<style>
+  :root{
+    --navy:#003671;
+    --navy-900:#00224a;
+    --navy-700:#0a4a8f;
+    --orange:#ff7002;
+    --orange-600:#e66300;
+    --orange-50:#fff3e8;
+    --ink:#0f1b2d;
+    --muted:#5a6b82;
+    --line:#e3e8ef;
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --ok:#1a8f5a;
+    --radius:16px;
+    --shadow:0 10px 30px rgba(0,34,74,.10);
+    --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit}
+  button{font:inherit;cursor:pointer}
+  .wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  /* ---------- Logo ---------- */
+  .logo{height:44px;width:auto}
+  .logo svg{height:100%;width:auto}
+  .logo--light .cls-1{fill:#fff}
+
+  /* ---------- Topbar ---------- */
+  .topbar{background:var(--navy-900);color:#cfe0f5;font-size:13px}
+  .topbar .wrap{display:flex;gap:12px;justify-content:space-between;align-items:center;padding:8px 0;flex-wrap:wrap}
+  .demo-pill{background:var(--orange);color:#fff;font-weight:700;border-radius:999px;padding:2px 10px;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+
+  header.nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line)}
+  header.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+  .brand .sep{width:1px;height:34px;background:var(--line)}
+  .brand small{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;line-height:1.2}
+  .brand strong{display:block;color:var(--navy);font-size:15px;line-height:1.2}
+  .nav-links{display:flex;gap:22px;font-weight:600;font-size:14px;color:var(--navy)}
+  .nav-links a{text-decoration:none}
+  .nav-links a:hover{color:var(--orange)}
+  .cart-btn{position:relative;display:flex;align-items:center;gap:8px;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:10px 16px;font-weight:700}
+  .cart-btn:hover{background:var(--navy-700)}
+  .cart-count{background:var(--orange);color:#fff;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:12px;padding:0 6px}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;background:radial-gradient(1200px 500px at 85% -10%,rgba(255,112,2,.35),transparent 60%),linear-gradient(135deg,var(--navy-900),var(--navy) 55%,var(--navy-700));color:#fff}
+  .hero::after{content:"";position:absolute;inset:auto -10% -1px -10%;height:70px;background:var(--bg);clip-path:ellipse(60% 100% at 50% 100%)}
+  .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding:64px 0 110px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600}
+  .eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--orange);display:inline-block}
+  .hero h1{font-size:clamp(34px,5vw,58px);line-height:1.04;margin:18px 0 14px;letter-spacing:-.02em}
+  .hero h1 span{color:var(--orange)}
+  .hero p.lead{font-size:clamp(16px,1.6vw,19px);color:#d7e5f7;max-width:560px;margin:0 0 26px}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:14px 22px;font-weight:700;text-decoration:none;transition:transform .15s ease,background .15s ease}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--orange);color:#fff}
+  .btn-primary:hover{background:var(--orange-600)}
+  .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+  .btn-ghost:hover{background:rgba(255,255,255,.1)}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:var(--navy-700)}
+  .btn-outline{background:#fff;color:var(--navy);border:1.5px solid var(--line)}
+  .btn-outline:hover{border-color:var(--navy)}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .hero-stats{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap}
+  .hero-stats div{font-size:13px;color:#b9cde6}
+  .hero-stats b{display:block;font-size:24px;color:#fff}
+
+  .badge-50{position:relative;justify-self:center;width:min(380px,100%);aspect-ratio:1;border-radius:50%;background:conic-gradient(from 200deg,var(--orange),#ff9a45,var(--orange));display:grid;place-items:center;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+  .badge-50::before{content:"";position:absolute;inset:14px;border-radius:50%;border:2px dashed rgba(255,255,255,.55)}
+  .badge-50 .inner{text-align:center;color:#fff}
+  .badge-50 .small{font-size:clamp(14px,1.6vw,18px);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+  .badge-50 .big{font-size:clamp(84px,11vw,140px);font-weight:900;line-height:.9;letter-spacing:-.04em}
+  .badge-50 .big sup{font-size:.45em;vertical-align:top;position:relative;top:.25em}
+  .badge-50 .tag{display:inline-block;margin-top:8px;background:var(--navy);padding:6px 14px;border-radius:999px;font-weight:700;font-size:14px}
+  .ticket-float{position:absolute;background:#fff;color:var(--navy);border-radius:12px;padding:10px 14px;font-weight:800;box-shadow:var(--shadow);font-size:14px;display:flex;align-items:center;gap:8px}
+  .ticket-float.t1{top:8%;left:-6%;transform:rotate(-8deg)}
+  .ticket-float.t2{bottom:10%;right:-4%;transform:rotate(6deg)}
+  .ticket-float em{font-style:normal;color:var(--orange)}
+
+  /* ---------- Sections ---------- */
+  section{padding:72px 0}
+  .sec-head{text-align:center;max-width:720px;margin:0 auto 40px}
+  .kicker{color:var(--orange);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:13px}
+  .sec-head h2{font-size:clamp(28px,3.4vw,40px);line-height:1.1;margin:8px 0 12px;color:var(--navy);letter-spacing:-.01em}
+  .sec-head p{color:var(--muted);margin:0;font-size:17px}
+
+  /* Motto band */
+  .motto{padding:0;margin-top:-40px;position:relative;z-index:2}
+  .motto .box{background:#fff;border-radius:20px;box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}
+  .motto .item{padding:22px 22px;display:flex;gap:14px;align-items:flex-start;border-right:1px solid var(--line)}
+  .motto .item:last-child{border-right:0}
+  .ico{flex:none;width:42px;height:42px;border-radius:12px;background:var(--orange-50);color:var(--orange);display:grid;place-items:center}
+  .ico svg{width:22px;height:22px}
+  .motto b{display:block;color:var(--navy);font-size:15px}
+  .motto span{font-size:13.5px;color:var(--muted)}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-14px;left:22px;width:32px;height:32px;border-radius:50%;background:var(--orange);color:#fff;font-weight:800;display:grid;place-items:center;box-shadow:0 4px 12px rgba(255,112,2,.4)}
+  .step h3{margin:10px 0 6px;color:var(--navy);font-size:18px}
+  .step p{margin:0;color:var(--muted);font-size:15px}
+
+  /* Catalog */
+  #catalogo{background:#fff}
+  .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+  .chip{border:1.5px solid var(--line);background:#fff;color:var(--navy);border-radius:999px;padding:9px 18px;font-weight:700;font-size:14px}
+  .chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s ease,transform .2s ease}
+  .card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+  .card-top{position:relative;padding:18px 18px 22px;color:#fff;min-height:132px;display:flex;flex-direction:column;justify-content:space-between}
+  .card-top.cinepolis{background:linear-gradient(135deg,#0b2d6b,#1d4fa8)}
+  .card-top.cinemex{background:linear-gradient(135deg,#7a0d1f,#c4142b)}
+  .card-top.combo{background:linear-gradient(135deg,var(--orange-600),#ff9a45)}
+  .card-top::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:14px;background:radial-gradient(circle at 7px 0,transparent 6px,#fff 6.5px) repeat-x;background-size:14px 14px}
+  .chain{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+  .card-top h3{margin:6px 0 0;font-size:21px;line-height:1.15}
+  .off{position:absolute;top:14px;right:14px;background:#fff;color:var(--orange);font-weight:900;font-size:13px;border-radius:999px;padding:4px 10px}
+  .card-body{padding:18px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .meta{display:flex;flex-wrap:wrap;gap:6px}
+  .meta span{font-size:12px;background:var(--bg);color:var(--muted);border-radius:6px;padding:3px 8px;font-weight:600}
+  .price-row{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:auto}
+  .ref{font-size:12px;color:var(--muted)}
+  .ref s{font-size:14px}
+  .price{font-size:30px;font-weight:900;color:var(--navy);line-height:1}
+  .price small{font-size:13px;color:var(--muted);font-weight:600}
+  .price-label{font-size:11px;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:.06em}
+  .qty{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
+  .qty button{width:34px;height:38px;border:0;background:#fff;color:var(--navy);font-size:18px;font-weight:700}
+  .qty button:hover{background:var(--bg)}
+  .qty output{min-width:28px;text-align:center;font-weight:800}
+  .add{flex:1}
+  .card-actions{display:flex;gap:10px}
+  .note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:22px}
+
+  /* Comparison / savings */
+  .saver{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+  .saver-card{background:linear-gradient(135deg,var(--navy-900),var(--navy));color:#fff;border-radius:22px;padding:30px;box-shadow:var(--shadow)}
+  .saver-card h3{margin:0 0 6px;font-size:22px}
+  .saver-card p{margin:0 0 18px;color:#c4d6ee}
+  .range{width:100%;accent-color:var(--orange)}
+  .saver-out{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+  .saver-out div{background:rgba(255,255,255,.08);border-radius:14px;padding:14px}
+  .saver-out small{display:block;color:#b9cde6;font-size:12px}
+  .saver-out b{font-size:26px}
+  .saver-out .hl{background:var(--orange)}
+  .saver-out .hl small{color:#fff}
+  .saver ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+  .saver li{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+  .saver li b{color:var(--navy);display:block}
+  .saver li span{color:var(--muted);font-size:14.5px}
+
+  /* Redeem */
+  #canje{background:#fff}
+  .redeem{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .redeem-col{border:1px solid var(--line);border-radius:20px;padding:26px;background:var(--bg)}
+  .redeem-col h3{display:flex;align-items:center;gap:10px;margin:0 0 14px;color:var(--navy)}
+  .dot{width:12px;height:12px;border-radius:50%}
+  .redeem-col ol{margin:0;padding-left:20px;display:grid;gap:10px;color:var(--ink)}
+  .redeem-col li::marker{color:var(--orange);font-weight:800}
+  .callout{margin-top:22px;background:var(--orange-50);border:1px solid #ffd2ad;border-radius:14px;padding:16px 18px;color:#7a3a00;font-size:14.5px;display:flex;gap:12px}
+
+  /* FAQ */
+  .faq{max-width:820px;margin:0 auto;display:grid;gap:12px}
+  details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px 20px}
+  summary{cursor:pointer;list-style:none;font-weight:700;color:var(--navy);padding:14px 0;display:flex;justify-content:space-between;gap:12px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--orange);font-size:22px;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{margin:0 0 16px;color:var(--muted)}
+
+  /* Footer */
+  footer{background:var(--navy-900);color:#b9cde6;padding:44px 0 28px;font-size:14px}
+  footer .wrap{display:grid;gap:24px}
+  .foot-top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot-top p{margin:0;max-width:520px}
+  .foot-motto{font-size:20px;font-weight:800;color:#fff}
+  .foot-motto span{color:var(--orange)}
+  .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:12.5px;color:#8ea6c6}
+
+  /* ---------- Drawer / checkout ---------- */
+  .overlay{position:fixed;inset:0;background:rgba(0,20,45,.55);opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}
+  .overlay.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(460px,100%);background:#fff;z-index:70;transform:translateX(100%);transition:transform .28s ease;display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.2)}
+  .drawer.open{transform:none}
+  .drawer-head{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .drawer-head h2{margin:0;font-size:19px;color:var(--navy)}
+  .x{border:0;background:var(--bg);width:36px;height:36px;border-radius:10px;font-size:20px;color:var(--navy)}
+  .progress{display:flex;gap:6px;padding:14px 22px 0}
+  .progress i{flex:1;height:5px;border-radius:5px;background:var(--line)}
+  .progress i.on{background:var(--orange)}
+  .progress-label{padding:6px 22px 0;font-size:12px;color:var(--muted);font-weight:600}
+  .drawer-body{flex:1;overflow:auto;padding:18px 22px}
+  .drawer-foot{border-top:1px solid var(--line);padding:16px 22px;display:grid;gap:12px}
+  .line{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line)}
+  .line .sw{width:44px;height:44px;border-radius:10px;flex:none}
+  .line .info{flex:1;min-width:0}
+  .line .info b{display:block;font-size:14.5px;color:var(--navy)}
+  .line .info small{color:var(--muted)}
+  .line .rm{border:0;background:none;color:var(--muted);font-size:13px;text-decoration:underline}
+  .tot{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+  .tot.big{font-size:20px;color:var(--navy);font-weight:900}
+  .tot.save{color:var(--ok);font-weight:700}
+  .empty{text-align:center;color:var(--muted);padding:40px 10px}
+  .field{display:grid;gap:6px;margin-bottom:14px}
+  .field label{font-weight:700;font-size:13.5px;color:var(--navy)}
+  .field input,.field select{border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;background:#fff}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(0,54,113,.12)}
+  .hint{font-size:12px;color:var(--muted)}
+  .pay-opts{display:grid;gap:10px;margin-bottom:16px}
+  .pay-opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);border-radius:12px;padding:14px;cursor:pointer}
+  .pay-opt:has(input:checked){border-color:var(--orange);background:var(--orange-50)}
+  .pay-opt input{accent-color:var(--orange);margin-top:3px}
+  .pay-opt b{display:block;color:var(--navy);font-size:14.5px}
+  .pay-opt span{font-size:13px;color:var(--muted)}
+  .verified{display:flex;gap:10px;align-items:center;background:#e9f7f0;border:1px solid #bfe6d3;color:#145c3b;border-radius:12px;padding:12px 14px;font-size:14px;margin-bottom:16px}
+  .spinner{width:44px;height:44px;border:4px solid var(--line);border-top-color:var(--orange);border-radius:50%;animation:spin 0.8s linear infinite;margin:50px auto 14px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .success{text-align:center;padding:6px 0 12px}
+  .success .check{width:64px;height:64px;border-radius:50%;background:#e9f7f0;color:var(--ok);display:grid;place-items:center;margin:4px auto 10px}
+  .success h3{margin:0;color:var(--navy)}
+  .success p{margin:6px 0 0;color:var(--muted);font-size:14px}
+  .folio{border-radius:14px;overflow:hidden;border:1px solid var(--line);margin-top:14px;text-align:left}
+  .folio-head{padding:10px 14px;color:#fff;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700}
+  .folio-body{display:flex;gap:14px;padding:14px;align-items:center}
+  .qr{width:84px;height:84px;flex:none;display:grid;grid-template-columns:repeat(21,1fr);background:#fff;padding:4px;border:1px solid var(--line);border-radius:6px}
+  .qr i{background:#fff}
+  .qr i.b{background:var(--ink)}
+  .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:17px;font-weight:800;color:var(--navy);letter-spacing:.06em;word-break:break-all}
+  .folio-body small{display:block;color:var(--muted);font-size:12px}
+  .copy{border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--navy);margin-top:6px}
+
+  .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;z-index:90;transition:transform .25s ease,visibility .25s;visibility:hidden;box-shadow:var(--shadow);max-width:calc(100% - 32px)}
+  .toast.show{transform:translate(-50%,0);visibility:visible}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .hero .wrap{grid-template-columns:1fr;padding-top:44px}
+    .badge-50{width:min(300px,80%)}
+    .motto .box{grid-template-columns:1fr 1fr}
+    .motto .item:nth-child(2){border-right:0}
+    .motto .item:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .steps{grid-template-columns:1fr 1fr;row-gap:30px}
+    .saver,.redeem{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+  @media (max-width:560px){
+    .logo{height:34px}
+    .brand .sep,.brand .tq{display:none}
+    .motto .box{grid-template-columns:1fr}
+    .motto .item{border-right:0;border-bottom:1px solid var(--line)}
+    .steps{grid-template-columns:1fr}
+    section{padding:56px 0}
+    .ticket-float{display:none}
+    .cart-btn .lbl{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- Logo Commosa (se clona en cada [data-logo]) -->
+<template id="logo-tpl"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 2" viewBox="0 0 368.15 141.54"><defs><style>      .cls-1 {        fill: #003671;      }      .cls-2 {        fill: #ff7002;      }    </style></defs><g id="Capa_1" data-name="Capa 1"><g><path class="cls-1" d="M7.83,119c.66-8.01,6.03-12.01,11.83-12.01,6.68,0,9.54,4.48,10.52,8.31l6.93-2.93c-1.63-5.95-7.01-12.48-17.44-12.48S.75,107.68,0,119h7.83Z"></path><path class="cls-1" d="M30.67,126.39c-.9,3.1-3.59,8.07-10.93,8.07-5.92,0-11.21-4.18-11.9-12.01H0c.79,11.01,8.9,19.1,19.74,19.1,10.19,0,15.82-6.6,17.69-12.23l-6.76-2.93Z"></path><path class="cls-1" d="M61.06,134.58c-5.77-.79-10.51-5.59-10.51-13.9s4.74-13.03,10.51-13.82v-6.89c-10.82.83-18.33,9.4-18.33,20.71s7.51,19.97,18.33,20.8v-6.9Z"></path><path class="cls-1" d="M64.51,99.97v6.89c5.77.79,10.51,5.59,10.51,13.82s-4.73,13.11-10.51,13.9v6.9c10.82-.83,18.33-9.41,18.33-20.8s-7.5-19.88-18.33-20.71"></path><path class="cls-1" d="M247.41,134.58c-5.78-.79-10.51-5.59-10.51-13.9s4.73-13.03,10.51-13.82v-6.89c-10.82.83-18.33,9.4-18.33,20.71s7.51,19.97,18.33,20.8v-6.9Z"></path><path class="cls-1" d="M250.85,99.97v6.89c5.78.79,10.51,5.59,10.51,13.82s-4.73,13.11-10.51,13.9v6.9c10.82-.83,18.33-9.41,18.33-20.8s-7.51-19.88-18.33-20.71"></path><path class="cls-1" d="M292.18,106.54c4.78.74,6.14,4.56,6.43,6.39l6.77-2.52c-.77-3.31-3.8-9.75-13.2-10.45v6.59Z"></path><path class="cls-1" d="M288.74,134.76c-3.9-.86-6.11-3.69-6.51-7.06l-6.93,2.44c.6,4.11,4.49,10.28,13.44,11.28v-6.66Z"></path><path class="cls-1" d="M294.78,117.75l-6.36-1.39c-3.02-.65-4.48-2.36-4.48-4.73s1.86-4.42,4.8-5.03v-6.6c-6.86.78-12.22,6.11-12.22,12.29,0,5.54,3.67,9.7,9.78,11.01l6.68,1.46c3.26.73,5.05,2.61,5.05,5.06,0,2.59-2.06,4.89-5.86,5.18v6.53c9.09-.4,13.44-6.76,13.44-12.12,0-5.79-3.75-10.11-10.84-11.65"></path><path class="cls-1" d="M312.14,120.43c0,11.65,7.09,20.95,18.58,20.95,3.51,0,6.38-1.07,8.54-2.71v-7.54c-1.92,2.18-4.58,3.48-7.8,3.48-7.34,0-11.5-6.11-11.5-14.18s4.57-13.61,11.58-13.61c3.2,0,5.82,1.16,7.72,3.18v-7.54c-2-1.41-4.8-2.4-8.54-2.4-11.09,0-18.58,9.28-18.58,20.37"></path><path class="cls-1" d="M350.29,133.07v-31.96h-7.58v33.57c0,1.31.3,5.06.57,5.64h7.42c-.08-.73-.41-3.75-.41-7.25"></path><path class="cls-1" d="M136.72,99.97c-3.87,0-7.78,1.09-10.78,4.2.34.53.66,1.09.94,1.67.54,1.1.93,2.24,1.21,3.43,1.57-1.58,3.73-2.53,6.27-2.53,5.78,0,8.31,3.83,8.31,8.97v24.61h7.58v-25.43c0-10.27-6.68-14.92-13.53-14.92"></path><path class="cls-1" d="M123.79,107.37c-2.42-4.92-7.04-7.39-11.93-7.39-2.84,0-5.79.79-8.21,2.42v6.25c1.51-1.21,3.45-1.9,5.69-1.9,5.86,0,8.31,3.91,8.31,8.97v24.61h7.66v-23.73c0-4.3-.37-6.9-1.52-9.23"></path><polygon class="cls-1" points="92.62 101.12 92.62 140.32 100.2 140.32 100.2 116.69 100.2 101.12 92.62 101.12"></polygon><path class="cls-1" d="M206.58,99.97c-3.86,0-7.78,1.09-10.78,4.2.34.53.65,1.09.94,1.67.55,1.1.93,2.24,1.21,3.43,1.57-1.58,3.73-2.53,6.27-2.53,5.79,0,8.31,3.83,8.31,8.97v24.61h7.58v-25.43c0-10.27-6.68-14.92-13.53-14.92"></path><path class="cls-1" d="M193.65,107.37c-2.42-4.92-7.04-7.39-11.93-7.39-2.84,0-5.79.79-8.21,2.42v6.25c1.51-1.21,3.45-1.9,5.69-1.9,5.87,0,8.31,3.91,8.31,8.97v24.61h7.66v-23.73c0-4.3-.38-6.9-1.52-9.23"></path><polygon class="cls-1" points="162.48 101.12 162.48 140.32 170.06 140.32 170.06 116.69 170.06 101.12 162.48 101.12"></polygon><path class="cls-2" d="M169.85,18.63c-.77,1.74-1.18,3.63-1.18,5.6,0,.47.03.95.08,1.41h12.28v24.01l-5.2,5.2c-6.62,6.62-17.39,6.62-24.01,0-3.21-3.2-4.97-7.47-4.97-12s1.76-8.8,4.97-12l3.62-3.63c-.4-3.66-.06-7.39,1.01-10.94l-9.6,9.6c-4.53,4.53-7.03,10.56-7.03,16.97s2.5,12.44,7.03,16.97c4.68,4.68,10.83,7.02,16.97,7.02s12.29-2.34,16.97-7.02l7.26-7.26V18.63h-18.19Z"></path><path class="cls-1" d="M206.68,0h-33.94l-7.26,7.26c-9.35,9.35-9.35,24.58,0,33.94,3.5,3.5,7.83,5.69,12.36,6.57v-7.21c-2.71-.76-5.27-2.2-7.39-4.33-6.62-6.62-6.62-17.39,0-24.01l5.2-5.2h24v24l-5.2,5.21c-.99.99-3.21,3.21-3.21,3.21v9.93s5.77-5.77,8.18-8.18l7.26-7.26V0Z"></path><path class="cls-1" d="M360.84,109.38s0,0,0-.01c.06,0,.13-.02.19.01h-.19Z"></path><path class="cls-1" d="M361.65,109.36s0,0,0,.01h-.19c.06-.03.13-.02.2-.01"></path><path class="cls-1" d="M368.14,102.06h0c0-.12,0-.25-.01-.37-.08-.7-.26-1.37-.55-2.02-.42-.94-1.01-1.76-1.79-2.43-.69-.6-1.47-1.04-2.33-1.33-.59-.2-1.19-.33-1.81-.35-.39-.01-.77-.02-1.16.02-.71.08-1.39.26-2.05.55-.94.42-1.76,1.01-2.43,1.79-.59.69-1.04,1.47-1.33,2.33-.2.59-.33,1.19-.35,1.81-.01.5-.02,1,.06,1.49.14.85.43,1.65.86,2.39.41.72.94,1.34,1.58,1.87.63.51,1.33.91,2.09,1.18.62.22,1.26.37,1.93.37.06,0,.12-.01.18,0h.42c.06-.02.12,0,.18,0,.23,0,.46-.01.69-.05.85-.14,1.65-.42,2.4-.86.72-.42,1.35-.94,1.88-1.59.51-.63.9-1.33,1.17-2.09.22-.62.37-1.25.37-1.91h0c0-.06-.02-.13.01-.19v-.42c-.03-.06-.02-.13-.01-.19M361.32,107.97c-3.03.05-5.5-2.31-5.58-5.41-.02-3.04,2.32-5.54,5.42-5.59,3.03-.05,5.53,2.32,5.58,5.41.05,3.04-2.32,5.53-5.42,5.58"></path><path class="cls-1" d="M364.7,105.85c-.32-.66-.65-1.32-.97-1.97-.11-.22-.23-.44-.38-.64-.23-.32-.5-.58-.92-.69.06-.02.1-.04.14-.05.04-.02.08-.03.13-.05.5-.22.87-.56,1.03-1.09.1-.34.11-.68.07-1.03-.08-.62-.38-1.08-.97-1.34-.42-.19-.87-.27-1.32-.28-.32,0-.42-.01-.73-.02v1.35c.21,0,.41,0,.62.02.09.01-.03.03.06.06.33.11.46.36.5.68.02.2,0,.4-.06.59-.11.3-.35.42-.64.46-.23.04-.24.04-.47.03v1.29c.07,0,.15,0,.22,0,.32.02.36.15.56.41.11.14.2.29.28.45.3.6.59,1.2.88,1.79.03.06.06.08.12.07.61,0,1.21,0,1.82,0h.08s-.03-.05-.04-.07"></path><path class="cls-1" d="M360.08,104.39h0v-5.69c-.6,0-1.2,0-1.8,0-.07,0-.07.04-.07.08v7.07c0,.06.01.08.08.08.57,0,1.14,0,1.71,0,.07,0,.08-.02.08-.08,0-.49,0-.97,0-1.46"></path></g></g></svg></template>
+
+<div class="topbar">
+  <div class="wrap">
+    <span><span class="demo-pill">Demo</span>&nbsp; Programa de beneficios para colaboradores Commosa</span>
+    <span>Operado por <b style="color:#fff">TaquillApp para Empresas</b></span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Inicio">
+      <span class="logo" data-logo></span>
+      <span class="sep"></span>
+      <span class="tq"><small>Beneficio corporativo</small><strong>Cine Commosa × TaquillApp</strong></span>
+    </a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#ahorro">Tu ahorro</a>
+      <a href="#canje">Canje</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <button class="cart-btn" id="openCart" aria-label="Abrir carrito">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9a2 2 0 0 0 0 6v3a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3a2 2 0 0 0 0-6V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1z"/><path d="M14 5v2M14 11v2M14 17v2"/></svg>
+      <span class="lbl">Mis folios</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow"><i></i> Beneficio exclusivo para colaboradores Commosa</span>
+      <h1>El mejor precio para ir al cine, <span>siempre.</span></h1>
+      <p class="lead">Gracias a Commosa y TaquillApp para Empresas, obtienes folios y códigos de <b>Cinépolis</b> y <b>Cinemex</b> con <b>más de 50% de descuento</b>. Los compras aquí y los canjeas directo en el cine.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#catalogo">Ver catálogo
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#como-funciona">¿Cómo funciona?</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>+50%</b>de descuento</div>
+        <div><b>2</b>cadenas: Cinépolis y Cinemex</div>
+        <div><b>100%</b>digital, folio al instante</div>
+      </div>
+    </div>
+    <div style="position:relative;display:grid">
+      <div class="badge-50" role="img" aria-label="Más de 50% de descuento">
+        <div class="inner">
+          <div class="small">Más de</div>
+          <div class="big">50<sup>%</sup></div>
+          <div class="small">de descuento</div>
+          <span class="tag">en boletos de cine</span>
+        </div>
+      </div>
+      <div class="ticket-float t1">🎬 Cinépolis desde <em>$67</em></div>
+      <div class="ticket-float t2">🍿 Cinemex desde <em>$61</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTTO BAND -->
+<section class="motto" aria-label="Beneficios">
+  <div class="wrap">
+    <div class="box">
+      <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><div><b>Más de 50% de descuento</b><span>Precio preferencial frente a taquilla.</span></div></div>
+      <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div><div><b>Folio al instante</b><span>Recibe tu código en segundos.</span></div></div>
+      <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><div><b>Respaldo TaquillApp</b><span>Soporte dedicado para empresas.</span></div></div>
+      <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><b>Para ti y tu familia</b><span>Úsalos cuando quieras y con quien quieras.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Cómo funciona</div>
+      <h2>Del catálogo a la butaca en 4 pasos</h2>
+      <p>Commosa pone el beneficio, TaquillApp te entrega el folio y tú solo eliges la película.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Elige tu boleto</h3><p>Explora el catálogo de Cinépolis y Cinemex: tradicional, VIP, Platino, 3D, Premium y combos.</p></div>
+      <div class="step"><h3>Valida que eres Commosa</h3><p>Ingresa tu número de colaborador y correo corporativo para activar el precio preferencial.</p></div>
+      <div class="step"><h3>Paga y recibe tu folio</h3><p>Paga con tarjeta o por descuento vía nómina. Tu folio llega al instante a tu correo.</p></div>
+      <div class="step"><h3>Canjéalo en el cine</h3><p>Presenta tu folio o código directamente en Cinépolis o Cinemex y disfruta la función.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section id="catalogo">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Catálogo de beneficios</div>
+      <h2>Folios y códigos de cine con precio Commosa</h2>
+      <p>Agrega al carrito los boletos que quieras y simula tu compra. Recuerda: te entregamos un folio que canjeas directamente en el cine.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrar catálogo">
+      <button class="chip" data-filter="all" aria-pressed="true">Todos</button>
+      <button class="chip" data-filter="cinepolis" aria-pressed="false">Cinépolis</button>
+      <button class="chip" data-filter="cinemex" aria-pressed="false">Cinemex</button>
+      <button class="chip" data-filter="combo" aria-pressed="false">Combos</button>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="note">Precios de demostración basados en el catálogo de TaquillApp; “precio en taquilla” es un valor de referencia ilustrativo que varía por ciudad, complejo y horario. Sujeto a disponibilidad y a las condiciones de cada cadena.</p>
+  </div>
+</section>
+
+<!-- SAVINGS -->
+<section id="ahorro">
+  <div class="wrap saver">
+    <div class="saver-card">
+      <h3>Calcula tu ahorro del año</h3>
+      <p>¿Cuántas veces al mes vas al cine (contando a tu familia)?</p>
+      <label class="sr" for="visits">Boletos al mes</label>
+      <input class="range" type="range" id="visits" min="1" max="12" value="4">
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#b9cde6"><span>1</span><span id="visitsLbl" style="color:#fff;font-weight:800">4 boletos / mes</span><span>12</span></div>
+      <div class="saver-out">
+        <div><small>Pagando en taquilla</small><b id="sTaq">$0</b></div>
+        <div><small>Con Cine Commosa</small><b id="sCom">$0</b></div>
+        <div class="hl" style="grid-column:1/-1"><small>Te ahorras al año</small><b id="sSave">$0</b></div>
+      </div>
+      <p style="margin:14px 0 0;font-size:12px;color:#9fb6d4">Cálculo ilustrativo con boleto tradicional Cinépolis lunes a domingo.</p>
+    </div>
+    <ul>
+      <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><b>El mejor precio para ir al cine, siempre.</b><span>Commosa negocia contigo en mente: más de 50% de descuento frente a taquilla.</span></div></li>
+      <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div><b>Paga como te acomode</b><span>Tarjeta de débito/crédito o descuento vía nómina, sin trámites extra.</span></div></li>
+      <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><b>Soporte TaquillApp para Empresas</b><span>Un equipo dedicado resuelve cualquier duda con tus folios.</span></div></li>
+      <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div><div><b>Ideal para regalar</b><span>Comparte tus folios con familia y amigos; quien lo presente en el cine lo puede usar.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- REDEEM -->
+<section id="canje">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Canje en cine</div>
+      <h2>¿Ya tienes tu folio? Así lo canjeas</h2>
+      <p>Nosotros te damos el folio o código; el canje se hace directamente con la cadena de cine.</p>
+    </div>
+    <div class="redeem">
+      <div class="redeem-col">
+        <h3><span class="dot" style="background:#1d4fa8"></span> En Cinépolis</h3>
+        <ol>
+          <li>Elige película, complejo y horario.</li>
+          <li><b>En taquilla:</b> presenta tu folio impreso o en tu celular al personal.</li>
+          <li><b>En línea o en la app:</b> elige “Canjear código” al momento de pagar e ingresa tu folio.</li>
+          <li>Recibe tus boletos y ¡disfruta la función!</li>
+        </ol>
+      </div>
+      <div class="redeem-col">
+        <h3><span class="dot" style="background:#c4142b"></span> En Cinemex</h3>
+        <ol>
+          <li>Elige película, complejo y horario.</li>
+          <li><b>En taquilla:</b> muestra tu código desde el correo o captura de pantalla.</li>
+          <li><b>En línea o en la app:</b> ingresa tu código en la sección de cupones/códigos al comprar.</li>
+          <li>Recibe tus boletos y ¡disfruta la función!</li>
+        </ol>
+      </div>
+    </div>
+    <div class="callout">
+      <span style="font-size:20px">⚠️</span>
+      <div><b>Importante:</b> cada folio es válido para el formato indicado (tradicional, VIP, 3D, etc.) y está sujeto a la vigencia y condiciones de cada cadena. Revisa la vigencia en tu correo de confirmación. Algunos estrenos o funciones especiales pueden tener restricciones.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Preguntas frecuentes</div>
+      <h2>Resolvemos tus dudas</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>¿Quién puede usar este beneficio?</summary><p>Todos los colaboradores activos de Commosa. Solo necesitas tu número de colaborador y tu correo corporativo para validar el acceso.</p></details>
+      <details><summary>¿Qué recibo exactamente al comprar?</summary><p>Un folio o código digital de Cinépolis o Cinemex. No es un boleto para una función específica: tú eliges película, día y horario al canjearlo en el cine.</p></details>
+      <details><summary>¿De verdad es más de 50% de descuento?</summary><p>Sí. Gracias a la alianza entre Commosa y TaquillApp para Empresas, el precio de los folios está por debajo de la mitad del precio regular en taquilla en la mayoría de los formatos. El porcentaje exacto depende del producto, ciudad y horario.</p></details>
+      <details><summary>¿Puedo regalar mis folios?</summary><p>Sí. El folio lo puede canjear cualquier persona que lo presente en el cine, así que puedes compartirlo con familia y amigos.</p></details>
+      <details><summary>¿Cómo funciona el descuento vía nómina?</summary><p>Si eliges esta opción, el monto de tu compra se descuenta de tu siguiente pago de nómina. Tu folio se entrega al instante igual que con tarjeta.</p></details>
+      <details><summary>¿Quién me ayuda si tengo un problema con mi folio?</summary><p>El equipo de soporte de TaquillApp para Empresas atiende cualquier incidencia con tus folios. También puedes acercarte a Capital Humano de Commosa.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="logo logo--light" data-logo style="height:52px"></span>
+      <p class="foot-motto">El mejor precio para ir al cine, <span>siempre.</span></p>
+    </div>
+    <div class="foot-top">
+      <p>Cine Commosa es un beneficio corporativo para colaboradores de Commosa, operado con el soporte de TaquillApp para Empresas.</p>
+      <a class="btn btn-primary" href="#catalogo">Obtener mis folios</a>
+    </div>
+    <div class="legal">
+      Página de demostración. Ningún pago, validación o folio mostrado es real. Cinépolis y Cinemex son marcas de sus respectivos titulares; TaquillApp actúa como intermediario de folios y códigos y no opera las salas de cine. Precios y condiciones ilustrativos sujetos a cambio.
+    </div>
+  </div>
+</footer>
+
+<!-- CART / CHECKOUT -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Carrito y compra" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 id="drawerTitle">Mis folios</h2>
+    <button class="x" id="closeCart" aria-label="Cerrar">×</button>
+  </div>
+  <div class="progress" id="progress"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-label" id="progressLbl"></div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot" id="drawerFoot"></div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  // ---- Logo ----
+  var tpl = document.getElementById('logo-tpl');
+  document.querySelectorAll('[data-logo]').forEach(function(el){
+    el.appendChild(tpl.content.cloneNode(true));
+    var s = el.querySelector('svg'); if (s){ s.setAttribute('role','img'); s.setAttribute('aria-label','Commosa'); }
+  });
+
+  // ---- Catálogo (precios demo basados en catálogo TaquillApp; referencia de taquilla ilustrativa) ----
+  var products = [
+    {id:'cx-trad-lv', chain:'cinemex', chainName:'Cinemex', name:'Boleto Tradicional', days:'Lunes a viernes', fmt:'2D', price:61, ref:125},
+    {id:'cx-trad-ld', chain:'cinemex', chainName:'Cinemex', name:'Boleto Tradicional', days:'Lunes a domingo', fmt:'2D', price:67, ref:135},
+    {id:'cx-3d',      chain:'cinemex', chainName:'Cinemex', name:'Boleto 3D', days:'Lunes a domingo', fmt:'3D', price:91, ref:185},
+    {id:'cx-premium', chain:'cinemex', chainName:'Cinemex', name:'Boleto Premium', days:'Lunes a domingo', fmt:'Premium', price:99, ref:205},
+    {id:'cx-platino', chain:'cinemex', chainName:'Cinemex', name:'Boleto Platino', days:'Lunes a domingo', fmt:'Platino', price:122, ref:250},
+    {id:'cp-trad-lv', chain:'cinepolis', chainName:'Cinépolis', name:'Boleto Tradicional', days:'Lunes a viernes', fmt:'2D', price:67, ref:135},
+    {id:'cp-trad-ld', chain:'cinepolis', chainName:'Cinépolis', name:'Boleto Tradicional', days:'Lunes a domingo', fmt:'2D', price:72, ref:145},
+    {id:'cp-vip-lv',  chain:'cinepolis', chainName:'Cinépolis', name:'Boleto VIP', days:'Lunes a viernes', fmt:'VIP', price:132, ref:265},
+    {id:'cp-vip-ld',  chain:'cinepolis', chainName:'Cinépolis', name:'Boleto VIP', days:'Lunes a domingo', fmt:'VIP', price:150, ref:300},
+    {id:'cp-combo',   chain:'combo', chainName:'Cinépolis · Combo', name:'Combo Pareja', days:'Lunes a domingo', fmt:'2 entradas + palomitas grandes + 2 refrescos medianos', price:312, ref:640}
+  ];
+  var colors = {cinepolis:'linear-gradient(135deg,#0b2d6b,#1d4fa8)', cinemex:'linear-gradient(135deg,#7a0d1f,#c4142b)', combo:'linear-gradient(135deg,#e66300,#ff9a45)'};
+  var byId = {}; products.forEach(function(p){ byId[p.id]=p; });
+  var money = function(n){ return '$' + n.toLocaleString('es-MX',{minimumFractionDigits:0,maximumFractionDigits:0}); };
+  var pct = function(p){ return Math.round((1 - p.price/p.ref)*100); };
+  var esc = function(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); };
+
+  var grid = document.getElementById('grid');
+  function renderGrid(filter){
+    grid.innerHTML = products.filter(function(p){ return filter==='all' || p.chain===filter; }).map(function(p){
+      return '<article class="card">'+
+        '<div class="card-top '+p.chain+'"><span class="off">-'+pct(p)+'%</span>'+
+          '<div class="chain">'+esc(p.chainName)+'</div><h3>'+esc(p.name)+'</h3></div>'+
+        '<div class="card-body">'+
+          '<div class="meta"><span>'+esc(p.days)+'</span><span>'+esc(p.fmt)+'</span><span>Folio digital</span></div>'+
+          '<div class="price-row"><div><div class="price-label">Precio Commosa</div><div class="price">'+money(p.price)+' <small>MXN</small></div></div>'+
+          '<div class="ref" style="text-align:right">En taquilla<br><s>'+money(p.ref)+'</s></div></div>'+
+          '<div class="card-actions"><div class="qty" data-qty="'+p.id+'"><button type="button" data-d="-1" aria-label="Menos">−</button><output>1</output><button type="button" data-d="1" aria-label="Más">+</button></div>'+
+          '<button class="btn btn-navy add" data-add="'+p.id+'">Agregar</button></div>'+
+        '</div></article>';
+    }).join('');
+  }
+  renderGrid('all');
+
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click',function(){
+      document.querySelectorAll('.chip').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      c.setAttribute('aria-pressed','true'); renderGrid(c.dataset.filter);
+    });
+  });
+
+  grid.addEventListener('click',function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    if (b.dataset.d){
+      var o = b.parentNode.querySelector('output');
+      o.textContent = Math.max(1, Math.min(10, (+o.textContent) + (+b.dataset.d)));
+    } else if (b.dataset.add){
+      var q = +grid.querySelector('[data-qty="'+b.dataset.add+'"] output').textContent;
+      addToCart(b.dataset.add, q);
+      toast('✓ '+q+' × '+byId[b.dataset.add].name+' ('+byId[b.dataset.add].chainName+') agregado');
+    }
+  });
+
+  // ---- Carrito ----
+  var cart = {}; // id -> qty
+  var step = 0;  // 0 carrito, 1 validación, 2 pago, 3 procesando, 4 listo
+  var user = {};
+  var issued = [];
+
+  function addToCart(id,q){ cart[id]=(cart[id]||0)+q; if(cart[id]>20) cart[id]=20; updateCount(); }
+  function count(){ return Object.keys(cart).reduce(function(s,k){return s+cart[k];},0); }
+  function totals(){
+    var t=0,r=0; Object.keys(cart).forEach(function(k){ t+=byId[k].price*cart[k]; r+=byId[k].ref*cart[k]; });
+    return {total:t, ref:r, save:r-t};
+  }
+  function updateCount(){ document.getElementById('cartCount').textContent = count(); }
+
+  var drawer=document.getElementById('drawer'), overlay=document.getElementById('overlay');
+  var body=document.getElementById('drawerBody'), foot=document.getElementById('drawerFoot');
+  function open(){ if(step===4){ step=0; } render(); drawer.classList.add('open'); overlay.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
+  function close(){ drawer.classList.remove('open'); overlay.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); if(step===4){ step=0; } }
+  document.getElementById('openCart').addEventListener('click',open);
+  document.getElementById('closeCart').addEventListener('click',close);
+  overlay.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+
+  var labels=['Paso 1 de 4 · Revisa tus folios','Paso 2 de 4 · Valida que eres colaborador Commosa','Paso 3 de 4 · Método de pago','Procesando…','Paso 4 de 4 · ¡Listo! Tus folios'];
+  var titles=['Mis folios','Validación','Pago','Procesando','Compra confirmada'];
+
+  function summaryHTML(){
+    var t=totals();
+    return '<div class="tot"><span>Precio en taquilla</span><s>'+money(t.ref)+'</s></div>'+
+           '<div class="tot save"><span>Tu ahorro Commosa</span><span>−'+money(t.save)+'</span></div>'+
+           '<div class="tot big"><span>Total</span><span>'+money(t.total)+' MXN</span></div>';
+  }
+
+  function render(){
+    document.getElementById('drawerTitle').textContent = titles[step];
+    document.getElementById('progressLbl').textContent = labels[step];
+    var bars=document.querySelectorAll('#progress i'), on = step===4?4:(step===3?3:step+1);
+    bars.forEach(function(b,i){ b.classList.toggle('on', i<on); });
+
+    if(step===0){
+      var ids=Object.keys(cart);
+      if(!ids.length){
+        body.innerHTML='<div class="empty"><div style="font-size:42px">🎟️</div><p><b>Aún no tienes folios en tu carrito.</b><br>Explora el catálogo y agrega tus boletos.</p></div>';
+        foot.innerHTML='<button class="btn btn-primary" data-act="shop">Ir al catálogo</button>';
+        return;
+      }
+      body.innerHTML = ids.map(function(k){ var p=byId[k];
+        return '<div class="line"><span class="sw" style="background:'+colors[p.chain]+'"></span><div class="info"><b>'+esc(p.name)+' · '+esc(p.chainName)+'</b><small>'+esc(p.days)+' · '+cart[k]+' × '+money(p.price)+'</small></div>'+
+          '<div style="text-align:right"><b>'+money(p.price*cart[k])+'</b><br><button class="rm" data-rm="'+k+'">Quitar</button></div></div>';
+      }).join('');
+      foot.innerHTML = summaryHTML()+'<button class="btn btn-primary" data-act="next">Continuar</button>';
+    }
+    else if(step===1){
+      body.innerHTML =
+        '<p style="margin-top:0;color:var(--muted);font-size:14.5px">Este beneficio es exclusivo para colaboradores Commosa. Ingresa tus datos para activar el precio preferencial.</p>'+
+        '<div class="field"><label for="fName">Nombre completo</label><input id="fName" autocomplete="name" placeholder="Ej. Ana López" value="'+esc(user.name||'')+'"></div>'+
+        '<div class="field"><label for="fNum">Número de colaborador</label><input id="fNum" inputmode="numeric" placeholder="Ej. 104582" value="'+esc(user.num||'')+'"><span class="hint">Demo: cualquier número de 4 a 8 dígitos.</span></div>'+
+        '<div class="field"><label for="fMail">Correo corporativo</label><input id="fMail" type="email" placeholder="nombre@commosa.com.mx" value="'+esc(user.mail||'')+'"><span class="hint">Aquí recibirás tus folios.</span></div>'+
+        '<div class="field"><label for="fPlant">Planta / sede</label><select id="fPlant"><option>Querétaro</option><option>Monterrey</option><option>Oficinas corporativas</option><option>Punto de venta</option></select></div>'+
+        '<p id="err" style="color:#c4142b;font-size:13.5px;margin:0"></p>';
+      if(user.plant) body.querySelector('#fPlant').value=user.plant;
+      foot.innerHTML = '<div style="display:flex;gap:10px"><button class="btn btn-outline" data-act="back">Atrás</button><button class="btn btn-primary" style="flex:1" data-act="validate">Validar y continuar</button></div>';
+    }
+    else if(step===2){
+      body.innerHTML =
+        '<div class="verified"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>'+esc(user.name)+'</b> · Colaborador #'+esc(user.num)+' verificado</span></div>'+
+        '<div class="pay-opts">'+
+          '<label class="pay-opt"><input type="radio" name="pay" value="nomina" checked><div><b>Descuento vía nómina</b><span>Se descuenta en tu próximo pago. Sin tarjeta.</span></div></label>'+
+          '<label class="pay-opt"><input type="radio" name="pay" value="card"><div><b>Tarjeta de débito o crédito</b><span>Visa, Mastercard o AMEX.</span></div></label>'+
+        '</div>'+
+        '<div id="cardFields" style="display:none">'+
+          '<div class="field"><label for="cNum">Número de tarjeta</label><input id="cNum" inputmode="numeric" placeholder="4242 4242 4242 4242" maxlength="19"></div>'+
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="field"><label for="cExp">Vencimiento</label><input id="cExp" placeholder="MM/AA" maxlength="5"></div><div class="field"><label for="cCvv">CVV</label><input id="cCvv" inputmode="numeric" placeholder="123" maxlength="4"></div></div>'+
+          '<span class="hint">Demo: no se procesa ningún cargo real; no ingreses datos reales.</span>'+
+        '</div>';
+      body.querySelectorAll('input[name=pay]').forEach(function(r){ r.addEventListener('change',function(){ document.getElementById('cardFields').style.display = r.value==='card'&&r.checked?'block':'none'; }); });
+      foot.innerHTML = summaryHTML()+'<div style="display:flex;gap:10px"><button class="btn btn-outline" data-act="back">Atrás</button><button class="btn btn-primary" style="flex:1" data-act="pay">Pagar '+money(totals().total)+'</button></div>';
+    }
+    else if(step===3){
+      body.innerHTML='<div class="spinner"></div><p style="text-align:center;color:var(--muted)">Generando tus folios con TaquillApp…</p>';
+      foot.innerHTML='';
+    }
+    else if(step===4){
+      body.innerHTML =
+        '<div class="success"><div class="check"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>'+
+        '<h3>¡Gracias, '+esc(user.name.split(' ')[0])+'!</h3><p>Enviamos '+issued.length+' folio'+(issued.length>1?'s':'')+' a <b>'+esc(user.mail)+'</b>.<br>Ahorraste <b style="color:var(--ok)">'+money(user.saved)+'</b> con Cine Commosa.</p></div>'+
+        issued.map(function(f,i){ var p=byId[f.id];
+          return '<div class="folio"><div class="folio-head" style="background:'+colors[p.chain]+'"><span>'+esc(p.chainName)+' · '+esc(p.name)+'</span><span>'+esc(p.days)+'</span></div>'+
+            '<div class="folio-body"><div class="qr" aria-hidden="true">'+qr(f.code)+'</div><div><small>Folio '+(i+1)+' de '+issued.length+'</small><div class="code">'+f.code+'</div><small>Vigencia demo: '+f.exp+'</small><button class="copy" data-copy="'+f.code+'">Copiar código</button></div></div></div>';
+        }).join('')+
+        '<div class="callout" style="margin-top:16px"><span>🎬</span><div>Canjea cada folio directamente en <b>Cinépolis</b> o <b>Cinemex</b>, en taquilla o en su app/sitio web. <a href="#canje" data-act="howto">Ver cómo canjear</a>.</div></div>';
+      foot.innerHTML='<button class="btn btn-primary" data-act="done">Seguir explorando</button>';
+    }
+  }
+
+  function validate(){
+    var name=body.querySelector('#fName').value.trim(), num=body.querySelector('#fNum').value.trim(), mail=body.querySelector('#fMail').value.trim(), plant=body.querySelector('#fPlant').value;
+    var err='';
+    if(name.length<3) err='Escribe tu nombre completo.';
+    else if(!/^\d{4,8}$/.test(num)) err='El número de colaborador debe tener de 4 a 8 dígitos.';
+    else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) err='Escribe un correo válido.';
+    user={name:name,num:num,mail:mail,plant:plant};
+    if(err){ body.querySelector('#err').textContent=err; return; }
+    step=2; render();
+  }
+
+  function pay(){
+    var method=body.querySelector('input[name=pay]:checked').value;
+    if(method==='card'){
+      var n=body.querySelector('#cNum').value.replace(/\s/g,''), ex=body.querySelector('#cExp').value, cv=body.querySelector('#cCvv').value;
+      if(!/^\d{15,16}$/.test(n)||!/^\d\d\/\d\d$/.test(ex)||!/^\d{3,4}$/.test(cv)){ toast('Completa los datos de la tarjeta (demo)'); return; }
+    }
+    user.saved=totals().save;
+    issued=[];
+    var exp=new Date(); exp.setMonth(exp.getMonth()+6);
+    var expStr=exp.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});
+    Object.keys(cart).forEach(function(k){ for(var i=0;i<cart[k];i++) issued.push({id:k, code:code(byId[k]), exp:expStr}); });
+    step=3; render();
+    setTimeout(function(){ cart={}; updateCount(); step=4; render(); body.scrollTop=0; }, 1600);
+  }
+
+  function code(p){
+    var A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789', s='';
+    for(var i=0;i<12;i++){ s+=A[Math.floor(Math.random()*A.length)]; if(i===3||i===7) s+='-'; }
+    return (p.chain==='cinemex'?'CMX':'CPL')+'-'+s;
+  }
+  // QR decorativo (no escaneable) generado a partir del código
+  function qr(str){
+    var n=21, h=0, cells='';
+    for(var i=0;i<str.length;i++) h=(h*31+str.charCodeAt(i))>>>0;
+    function rnd(){ h^=h<<13; h>>>=0; h^=h>>>17; h^=h<<5; h>>>=0; return h/4294967296; }
+    function finder(x,y){ var ox=[[0,0],[n-7,0],[0,n-7]]; for(var k=0;k<3;k++){ var dx=x-ox[k][0], dy=y-ox[k][1]; if(dx>=0&&dx<7&&dy>=0&&dy<7){ return (dx===0||dx===6||dy===0||dy===6||(dx>1&&dx<5&&dy>1&&dy<5)) ? 1 : 0; } if(dx>=-1&&dx<8&&dy>=-1&&dy<8) return 0; } return -1; }
+    for(var y=0;y<n;y++) for(var x=0;x<n;x++){ var f=finder(x,y); var b=f===-1?rnd()>.5:f===1; cells+='<i'+(b?' class="b"':'')+'></i>'; }
+    return cells;
+  }
+
+  drawer.addEventListener('click',function(e){
+    var t=e.target.closest('[data-act],[data-rm],[data-copy]'); if(!t) return;
+    if(t.dataset.rm){ delete cart[t.dataset.rm]; updateCount(); render(); return; }
+    if(t.dataset.copy){
+      var c=t.dataset.copy;
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(c).then(function(){toast('Código copiado');},function(){toast(c);}); } else { toast(c); }
+      return;
+    }
+    var a=t.dataset.act;
+    if(a==='shop'||a==='done'){ close(); location.hash='#catalogo'; }
+    else if(a==='howto'){ close(); }
+    else if(a==='next'){ step=1; render(); }
+    else if(a==='back'){ step=Math.max(0,step-1); render(); }
+    else if(a==='validate'){ validate(); }
+    else if(a==='pay'){ pay(); }
+  });
+
+  // ---- Calculadora ----
+  var v=document.getElementById('visits'), base=byId['cp-trad-ld'];
+  function calc(){
+    var m=+v.value;
+    document.getElementById('visitsLbl').textContent = m+(m===1?' boleto / mes':' boletos / mes');
+    document.getElementById('sTaq').textContent = money(base.ref*m*12);
+    document.getElementById('sCom').textContent = money(base.price*m*12);
+    document.getElementById('sSave').textContent = money((base.ref-base.price)*m*12);
+  }
+  v.addEventListener('input',calc); calc();
+
+  // ---- Toast ----
+  var tEl=document.getElementById('toast'), tT;
+  function toast(msg){ tEl.textContent=msg; tEl.classList.add('show'); clearTimeout(tT); tT=setTimeout(function(){ tEl.classList.remove('show'); },2200); }
+})();
+</script>
+</body>
+</html>
